@@ -348,10 +348,6 @@
             color: #667eea;
         }
         
-        .hidden-input {
-            display: none;
-        }
-        
         .add-modal {
             display: none;
             position: fixed;
@@ -383,9 +379,16 @@
             font-family: 'Anton', sans-serif;
             font-size: 1.8rem;
             color: #000;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             text-transform: uppercase;
             text-align: center;
+        }
+        
+        .add-modal-content .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
         }
         
         .form-group {
@@ -400,7 +403,8 @@
             font-size: 0.95rem;
         }
         
-        .form-group input[type="text"] {
+        .form-group input[type="text"],
+        .form-group input[type="url"] {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
@@ -410,36 +414,42 @@
             transition: border-color 0.3s ease;
         }
         
-        .form-group input[type="file"] {
-            width: 100%;
-            padding: 12px;
-            border: 2px dashed #ddd;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: 'Montserrat', sans-serif;
-            cursor: pointer;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-group input[type="file"]:hover {
-            border-color: #667eea;
-        }
-        
         .form-group input:focus {
             outline: none;
             border-color: #667eea;
         }
         
-        .preview-image {
-            max-width: 100%;
-            max-height: 200px;
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .form-group small a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .form-group small a:hover {
+            text-decoration: underline;
+        }
+        
+        .preview-container {
             margin-top: 15px;
-            border-radius: 8px;
             display: none;
         }
         
-        .preview-image.show {
+        .preview-container.show {
             display: block;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
         }
         
         .form-actions {
@@ -469,6 +479,12 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
         
         .btn-secondary {
@@ -688,18 +704,30 @@
     <div class="add-modal" id="add-modal">
         <div class="add-modal-content">
             <h3>Adicionar Nova Arte</h3>
+            <p class="subtitle">Cole o link da imagem hospedada online</p>
+            
             <div class="form-group">
-                <label>Selecionar Imagem:</label>
-                <input type="file" id="image-file" accept="image/*">
+                <label>Link da Imagem (URL):</label>
+                <input type="url" id="image-url" placeholder="https://i.imgur.com/exemplo.jpg">
+                <small>
+                    Hospede gratuitamente em: 
+                    <a href="https://imgur.com/upload" target="_blank">Imgur</a> ou 
+                    <a href="https://imgbb.com/" target="_blank">ImgBB</a>
+                </small>
+            </div>
+            
+            <div class="preview-container" id="preview-container">
                 <img id="preview" class="preview-image" alt="Preview">
             </div>
+            
             <div class="form-group">
                 <label>Nome do Aluno:</label>
                 <input type="text" id="student-name" placeholder="Digite o nome completo">
             </div>
+            
             <div class="form-actions">
                 <button class="btn btn-secondary" id="cancel-btn">Cancelar</button>
-                <button class="btn btn-primary" id="submit-btn">Adicionar</button>
+                <button class="btn btn-primary" id="submit-btn" disabled>Adicionar</button>
             </div>
         </div>
     </div>
@@ -724,11 +752,11 @@
                 const saved = localStorage.getItem(STORAGE_KEY);
                 if (saved) {
                     artworks = JSON.parse(saved);
-                    console.log('✓ Galeria carregada do localStorage:', artworks.length, 'imagens');
+                    console.log('✓ Galeria carregada:', artworks.length, 'imagens');
                     return true;
                 }
             } catch (e) {
-                console.error('Erro ao carregar do localStorage:', e);
+                console.error('Erro ao carregar:', e);
             }
             return false;
         }
@@ -738,20 +766,16 @@
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(artworks));
                 updateStorageInfo();
-                console.log('✓ Galeria salva no localStorage');
+                console.log('✓ Galeria salva');
                 return true;
             } catch (e) {
-                if (e.name === 'QuotaExceededError') {
-                    showToast('⚠️ Armazenamento cheio! Remova algumas imagens.', 'error');
-                } else {
-                    showToast('Erro ao salvar: ' + e.message, 'error');
-                }
-                console.error('Erro ao salvar:', e);
+                showToast('⚠️ Erro ao salvar!', 'error');
+                console.error('Erro:', e);
                 return false;
             }
         }
         
-        // Atualiza contador de storage
+        // Atualiza contador
         function updateStorageInfo() {
             const info = document.getElementById('storage-info');
             const count = artworks.length;
@@ -759,25 +783,8 @@
         }
         
         // Carrega galeria inicial
-        async function loadInitialGallery() {
-            const hasStorage = loadFromStorage();
-            
-            if (!hasStorage) {
-                try {
-                    const response = await fetch('./galeria_turma7003.json');
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (Array.isArray(data) && data.length > 0) {
-                            artworks = data;
-                            saveToStorage();
-                            console.log('✓ Galeria inicial carregada do JSON');
-                        }
-                    }
-                } catch (e) {
-                    console.log('Nenhuma galeria inicial encontrada');
-                }
-            }
-            
+        function loadInitialGallery() {
+            loadFromStorage();
             renderGallery();
             updateStorageInfo();
         }
@@ -836,7 +843,7 @@
                 artworks.splice(index, 1);
                 saveToStorage();
                 renderGallery();
-                showToast('✓ Arte removida com sucesso!');
+                showToast('✓ Arte removida!');
             }
         }
         
@@ -847,20 +854,18 @@
                 return;
             }
             
-            if (confirm('⚠️ ATENÇÃO!\n\nIsto vai remover TODAS as ' + artworks.length + ' artes da galeria permanentemente.\n\nTem certeza?')) {
+            if (confirm('⚠️ ATENÇÃO!\n\nIsto vai remover TODAS as ' + artworks.length + ' artes.\n\nTem certeza?')) {
                 artworks = [];
                 saveToStorage();
                 renderGallery();
-                showToast('✓ Galeria limpa com sucesso!');
+                showToast('✓ Galeria limpa!');
             }
         }
         
-        // Mostra toast de notificação
-        function showToast(message, type = 'success') {
+        // Mostra toast
+        function showToast(message) {
             const existingToast = document.querySelector('.toast');
-            if (existingToast) {
-                existingToast.remove();
-            }
+            if (existingToast) existingToast.remove();
             
             const toast = document.createElement('div');
             toast.className = 'toast';
@@ -882,72 +887,76 @@
         // Fecha modal de adição
         function closeAddModal() {
             document.getElementById('add-modal').classList.remove('active');
-            document.getElementById('image-file').value = '';
+            document.getElementById('image-url').value = '';
             document.getElementById('student-name').value = '';
-            document.getElementById('preview').classList.remove('show');
-            document.getElementById('preview').src = '';
+            document.getElementById('preview-container').classList.remove('show');
+            document.getElementById('submit-btn').disabled = true;
             document.body.style.overflow = 'auto';
         }
         
-        // Preview da imagem
-        function previewImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const fileName = file.name.replace(/\.[^/.]+$/, '');
-                document.getElementById('student-name').value = fileName;
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview = document.getElementById('preview');
-                    preview.src = e.target.result;
-                    preview.classList.add('show');
-                };
-                reader.readAsDataURL(file);
+        // Preview da imagem a partir da URL
+        function previewImageFromUrl() {
+            const url = document.getElementById('image-url').value.trim();
+            const submitBtn = document.getElementById('submit-btn');
+            const previewContainer = document.getElementById('preview-container');
+            const preview = document.getElementById('preview');
+            
+            if (!url) {
+                previewContainer.classList.remove('show');
+                submitBtn.disabled = true;
+                return;
             }
+            
+            // Testa se a URL é válida e carrega a imagem
+            const img = new Image();
+            img.onload = function() {
+                preview.src = url;
+                previewContainer.classList.add('show');
+                submitBtn.disabled = false;
+            };
+            img.onerror = function() {
+                previewContainer.classList.remove('show');
+                submitBtn.disabled = true;
+                showToast('⚠️ URL inválida ou imagem não acessível');
+            };
+            img.src = url;
         }
         
-        // Adiciona nova imagem
+        // Adiciona nova arte
         function addNewArt() {
-            const fileInput = document.getElementById('image-file');
+            const url = document.getElementById('image-url').value.trim();
             const name = document.getElementById('student-name').value.trim();
             
-            if (!fileInput.files[0]) {
-                showToast('⚠️ Selecione uma imagem!', 'error');
+            if (!url) {
+                showToast('⚠️ Cole o link da imagem!');
                 return;
             }
             
             if (!name) {
-                showToast('⚠️ Digite o nome do aluno!', 'error');
+                showToast('⚠️ Digite o nome do aluno!');
                 return;
             }
             
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+            artworks.push({
+                file: url,
+                student: name
+            });
             
-            reader.onload = function(e) {
-                artworks.push({
-                    file: e.target.result,
-                    student: name
-                });
+            if (saveToStorage()) {
+                renderGallery();
+                closeAddModal();
+                showToast('✓ Arte adicionada!');
                 
-                if (saveToStorage()) {
-                    renderGallery();
-                    closeAddModal();
-                    showToast('✓ Arte adicionada com sucesso!');
-                    
-                    setTimeout(() => {
-                        const cards = document.querySelectorAll('.art-card');
-                        const lastCard = cards[cards.length - 1];
-                        if (lastCard) {
-                            lastCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    }, 100);
-                } else {
-                    artworks.pop();
-                }
-            };
-            
-            reader.readAsDataURL(file);
+                setTimeout(() => {
+                    const cards = document.querySelectorAll('.art-card');
+                    const lastCard = cards[cards.length - 1];
+                    if (lastCard) {
+                        lastCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 100);
+            } else {
+                artworks.pop();
+            }
         }
         
         // Abre modal de visualização
@@ -996,7 +1005,8 @@
         document.getElementById('clear-btn').addEventListener('click', clearGallery);
         document.getElementById('cancel-btn').addEventListener('click', closeAddModal);
         document.getElementById('submit-btn').addEventListener('click', addNewArt);
-        document.getElementById('image-file').addEventListener('change', previewImage);
+        document.getElementById('image-url').addEventListener('input', previewImageFromUrl);
+        document.getElementById('image-url').addEventListener('blur', previewImageFromUrl);
         document.getElementById('close-modal-btn').addEventListener('click', closeModal);
         document.getElementById('prev-btn').addEventListener('click', () => changeImage(-1));
         document.getElementById('next-btn').addEventListener('click', () => changeImage(1));
