@@ -17,6 +17,62 @@
             font-family: 'Montserrat', sans-serif;
             background: #faf9f7;
             min-height: 100vh;
+            padding: 0;
+        }
+        
+        .menu {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+        
+        .menu-logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        
+        .menu-nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .menu-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .menu-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-link.active {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+        }
+        
+        .menu-link.galeria {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .menu-link.galeria:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .main-content {
             padding: 60px 40px;
         }
         
@@ -54,6 +110,7 @@
         .nav-links {
             text-align: center;
             margin-bottom: 30px;
+            display: none;
         }
         
         .nav-links a {
@@ -132,6 +189,35 @@
             align-items: center;
             justify-content: center;
             font-weight: 300;
+        }
+        
+        .approve-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 35px;
+            height: 35px;
+            background: rgba(34, 197, 94, 0.9);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .art-card:hover .approve-btn {
+            opacity: 1;
+        }
+        
+        .approve-btn:hover {
+            background: rgba(22, 163, 74, 1);
+            transform: scale(1.15);
         }
         
         .art-card:hover .delete-btn {
@@ -389,10 +475,18 @@
             font-size: 0.85rem;
             z-index: 100;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         
         .storage-info strong {
             font-weight: 700;
+        }
+        
+        .storage-info small {
+            display: block;
+            font-size: 0.75rem;
+            margin-top: 4px;
+            opacity: 0.9;
         }
         
         .add-modal {
@@ -667,6 +761,26 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            .menu {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .menu-nav {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+            
+            .menu-link {
+                text-align: center;
+            }
+            
+            .main-content {
+                padding: 40px 20px;
+            }
+            
             .close-btn {
                 top: 20px;
                 right: 20px;
@@ -718,22 +832,28 @@
     </style>
 </head>
 <body>
-    <div class="content-wrapper" id="content">
-        <div class="header">
-            <h1>RASCUNHOS</h1>
-            <h2>ÁREA DE UPLOAD · TURMA 7003</h2>
+    <nav class="menu">
+        <div class="menu-logo">GALERIA TURMA 7003</div>
+        <div class="menu-nav">
+            <a href="index.html" class="menu-link galeria">🎨 Galeria Principal</a>
+            <a href="rascunhos.html" class="menu-link active">📝 Rascunhos</a>
         </div>
-        
-        <div class="nav-links">
-            <a href="index.html">← Ver Galeria Principal</a>
+    </nav>
+    
+    <div class="main-content">
+        <div class="content-wrapper" id="content">
+            <div class="header">
+                <h1>RASCUNHOS</h1>
+                <h2>ÁREA DE UPLOAD · TURMA 7003</h2>
+            </div>
+            
+            <div class="info-banner">
+                <h3>📝 Área de Trabalho dos Alunos</h3>
+                <p>Aqui você pode adicionar suas artes. Clique no ✓ verde para aprovar e enviar para a galeria principal!</p>
+            </div>
+            
+            <div class="gallery" id="gallery"></div>
         </div>
-        
-        <div class="info-banner">
-            <h3>📝 Área de Trabalho dos Alunos</h3>
-            <p>Aqui você pode adicionar suas artes. Elas ficam salvas apenas no seu navegador!</p>
-        </div>
-        
-        <div class="gallery" id="gallery"></div>
     </div>
     
     <div class="storage-info" id="storage-info">
@@ -832,7 +952,10 @@
         function updateStorageInfo() {
             const info = document.getElementById('storage-info');
             const count = artworks.length;
-            info.innerHTML = `<strong>${count}</strong> ${count === 1 ? 'rascunho' : 'rascunhos'}`;
+            info.innerHTML = `
+                <strong>${count}</strong> ${count === 1 ? 'rascunho' : 'rascunhos'}
+                <small>💾 Salvos permanentemente</small>
+            `;
         }
         
         function loadInitialGallery() {
@@ -874,6 +997,15 @@
                 name.className = 'art-card-name';
                 name.textContent = art.student;
                 
+                const approveBtn = document.createElement('button');
+                approveBtn.className = 'approve-btn';
+                approveBtn.innerHTML = '✓';
+                approveBtn.title = 'Aprovar para Galeria Principal';
+                approveBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    approveArt(index);
+                };
+                
                 const deleteBtn = document.createElement('button');
                 deleteBtn.className = 'delete-btn';
                 deleteBtn.innerHTML = '×';
@@ -884,6 +1016,7 @@
                 
                 card.appendChild(img);
                 card.appendChild(name);
+                card.appendChild(approveBtn);
                 card.appendChild(deleteBtn);
                 gallery.appendChild(card);
             });
@@ -895,6 +1028,37 @@
                 saveToStorage();
                 renderGallery();
                 showToast('✓ Rascunho removido!');
+            }
+        }
+        
+        function approveArt(index) {
+            const art = artworks[index];
+            
+            if (confirm('Aprovar "' + art.student + '" para a Galeria Principal?')) {
+                try {
+                    // Adiciona na galeria principal
+                    const mainGallery = localStorage.getItem('galeria_turma7003_artworks');
+                    let mainArtworks = mainGallery ? JSON.parse(mainGallery) : [];
+                    
+                    // Verifica se já existe
+                    const exists = mainArtworks.some(a => a.file === art.file && a.student === art.student);
+                    if (exists) {
+                        showToast('⚠️ Esta arte já está na galeria principal!');
+                        return;
+                    }
+                    
+                    mainArtworks.push(art);
+                    localStorage.setItem('galeria_turma7003_artworks', JSON.stringify(mainArtworks));
+                    
+                    // Remove dos rascunhos
+                    artworks.splice(index, 1);
+                    saveToStorage();
+                    renderGallery();
+                    
+                    showToast('✓ Arte aprovada e movida para a galeria principal!');
+                } catch (e) {
+                    showToast('⚠️ Erro ao aprovar: ' + e.message);
+                }
             }
         }
         
@@ -1077,4 +1241,3 @@
     </script>
 </body>
 </html>
-            
