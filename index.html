@@ -72,11 +72,11 @@
             right: 10px;
             width: 35px;
             height: 35px;
-            background: rgba(255, 0, 0, 0.8);
+            background: rgba(220, 38, 38, 0.9);
             color: #fff;
             border: none;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             opacity: 0;
             transition: all 0.3s ease;
@@ -84,6 +84,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 300;
         }
         
         .art-card:hover .delete-btn {
@@ -91,8 +92,8 @@
         }
         
         .delete-btn:hover {
-            background: rgba(255, 0, 0, 1);
-            transform: scale(1.1);
+            background: rgba(185, 28, 28, 1);
+            transform: scale(1.15);
         }
         
         .art-card:nth-child(2) {
@@ -244,16 +245,17 @@
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: none;
+            background: rgba(0, 0, 0, 0.3);
             color: #fff;
             border: none;
             cursor: pointer;
-            font-size: 5rem;
+            font-size: 3rem;
             transition: all 0.3s ease;
             z-index: 1001;
             font-family: 'Montserrat', sans-serif;
-            padding: 20px;
+            padding: 20px 25px;
             opacity: 0.7;
+            border-radius: 8px;
         }
         
         .prev-btn {
@@ -266,83 +268,84 @@
         
         .nav-btn:hover {
             opacity: 1;
-            transform: translateY(-50%) scale(1.15);
+            background: rgba(0, 0, 0, 0.6);
+            transform: translateY(-50%) scale(1.1);
         }
         
-        .add-image-btn {
+        .fab-container {
             position: fixed;
             bottom: 40px;
             right: 40px;
-            width: 60px;
-            height: 60px;
-            background: #000;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            font-size: 2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             z-index: 100;
         }
         
-        .add-image-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
-        }
-        
-        .save-btn {
-            position: fixed;
-            bottom: 40px;
-            right: 120px;
+        .fab {
             width: 60px;
             height: 60px;
-            background: #000;
-            color: #fff;
             border: none;
             border-radius: 50%;
-            font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
-            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.8rem;
+            position: relative;
         }
         
-        .save-btn:hover {
+        .fab:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .save-btn.saved {
-            background: #4CAF50;
+        .fab-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
         }
         
-        .import-btn {
+        .fab-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #fff;
+        }
+        
+        .fab-tooltip {
+            position: absolute;
+            right: 75px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .fab:hover .fab-tooltip {
+            opacity: 1;
+        }
+        
+        .storage-info {
             position: fixed;
             bottom: 40px;
-            right: 200px;
-            width: 60px;
-            height: 60px;
-            background: #2196F3;
+            left: 40px;
+            background: rgba(0, 0, 0, 0.7);
             color: #fff;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(33, 150, 243, 0.3);
-            transition: all 0.3s ease;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.85rem;
             z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            backdrop-filter: blur(10px);
         }
         
-        .import-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(33, 150, 243, 0.4);
+        .storage-info strong {
+            color: #667eea;
         }
         
         .hidden-input {
@@ -373,6 +376,7 @@
             max-width: 500px;
             width: 90%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s ease;
         }
         
         .add-modal-content h3 {
@@ -418,12 +422,12 @@
         }
         
         .form-group input[type="file"]:hover {
-            border-color: #000;
+            border-color: #667eea;
         }
         
         .form-group input:focus {
             outline: none;
-            border-color: #000;
+            border-color: #667eea;
         }
         
         .preview-image {
@@ -458,21 +462,67 @@
         }
         
         .btn-primary {
-            background: #000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
         }
         
         .btn-primary:hover {
-            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
         
         .btn-secondary {
-            background: #ddd;
-            color: #333;
+            background: #e5e7eb;
+            color: #374151;
         }
         
         .btn-secondary:hover {
-            background: #ccc;
+            background: #d1d5db;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #888;
+        }
+        
+        .empty-state svg {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .empty-state p {
+            font-size: 1rem;
+            color: #999;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 120px;
+            right: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            z-index: 3000;
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+        
+        .toast.hide {
+            animation: slideOutRight 0.3s ease forwards;
         }
         
         @keyframes fadeIn {
@@ -491,18 +541,46 @@
             }
         }
         
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+        
         @media (max-width: 968px) {
             .gallery {
                 grid-template-columns: repeat(3, 1fr);
             }
             
             .art-card:nth-child(2),
-            .art-card:nth-child(8) {
+            .art-card:nth-child(8),
+            .art-card:nth-child(14),
+            .art-card:nth-child(20) {
                 grid-row: span 1;
                 aspect-ratio: 1;
             }
             
-            .art-card:nth-child(5) {
+            .art-card:nth-child(4),
+            .art-card:nth-child(5),
+            .art-card:nth-child(10),
+            .art-card:nth-child(11),
+            .art-card:nth-child(17) {
                 grid-column: span 1;
                 aspect-ratio: 1;
             }
@@ -517,6 +595,11 @@
                 font-size: 2.5rem;
             }
             
+            .header h2 {
+                font-size: 0.75rem;
+                letter-spacing: 3px;
+            }
+            
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -527,7 +610,8 @@
             }
             
             .nav-btn {
-                font-size: 3rem;
+                font-size: 2rem;
+                padding: 15px 20px;
             }
             
             .prev-btn {
@@ -536,6 +620,36 @@
             
             .next-btn {
                 right: 15px;
+            }
+            
+            .fab-container {
+                bottom: 20px;
+                right: 20px;
+                gap: 12px;
+            }
+            
+            .fab {
+                width: 56px;
+                height: 56px;
+                font-size: 1.6rem;
+            }
+            
+            .fab-tooltip {
+                display: none;
+            }
+            
+            .storage-info {
+                bottom: 20px;
+                left: 20px;
+                font-size: 0.75rem;
+                padding: 10px 16px;
+            }
+            
+            .toast {
+                bottom: 100px;
+                right: 20px;
+                left: 20px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -550,10 +664,26 @@
         <div class="gallery" id="gallery"></div>
     </div>
     
-    <input type="file" id="import-input" class="hidden-input" accept=".json">
-    <button class="import-btn" title="Importar Galeria">📂</button>
-    <button class="save-btn" id="save-btn" title="Exportar Galeria">💾</button>
-    <button class="add-image-btn" title="Adicionar Imagem">+</button>
+    <div class="storage-info" id="storage-info">
+        <strong>0</strong> artes salvas
+    </div>
+    
+    <div class="fab-container">
+        <button class="fab fab-secondary" id="clear-btn" title="Limpar Galeria">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            <span class="fab-tooltip">Limpar Tudo</span>
+        </button>
+        <button class="fab fab-primary" id="add-btn" title="Adicionar Imagem">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span class="fab-tooltip">Adicionar Arte</span>
+        </button>
+    </div>
     
     <div class="add-modal" id="add-modal">
         <div class="add-modal-content">
@@ -569,7 +699,7 @@
             </div>
             <div class="form-actions">
                 <button class="btn btn-secondary" id="cancel-btn">Cancelar</button>
-                <button class="btn btn-primary" id="add-btn">Adicionar</button>
+                <button class="btn btn-primary" id="submit-btn">Adicionar</button>
             </div>
         </div>
     </div>
@@ -584,36 +714,93 @@
     </div>
     
     <script>
+        const STORAGE_KEY = 'galeria_turma7003_artworks';
         let artworks = [];
         let currentIndex = 0;
-        const ORIGINAL_COUNT = 0;
         
-        async function autoLoadGallery() {
-            console.log('Carregando galeria...');
-            
+        // Carrega artworks do localStorage
+        function loadFromStorage() {
             try {
-                const response = await fetch('./galeria_turma7003.json');
-                
-                if (response.ok) {
-                    const imported = await response.json();
-                    
-                    if (Array.isArray(imported) && imported.length > 0) {
-                        artworks = imported;
-                        console.log('✓ Galeria carregada! Total:', imported.length, 'imagens');
-                    }
-                } else {
-                    console.log('Arquivo galeria_turma7003.json não encontrado. Galeria vazia.');
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    artworks = JSON.parse(saved);
+                    console.log('✓ Galeria carregada do localStorage:', artworks.length, 'imagens');
+                    return true;
                 }
             } catch (e) {
-                console.log('Iniciando com galeria vazia:', e.message);
+                console.error('Erro ao carregar do localStorage:', e);
             }
-            
-            loadGallery();
+            return false;
         }
         
-        function loadGallery() {
+        // Salva artworks no localStorage
+        function saveToStorage() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(artworks));
+                updateStorageInfo();
+                console.log('✓ Galeria salva no localStorage');
+                return true;
+            } catch (e) {
+                if (e.name === 'QuotaExceededError') {
+                    showToast('⚠️ Armazenamento cheio! Remova algumas imagens.', 'error');
+                } else {
+                    showToast('Erro ao salvar: ' + e.message, 'error');
+                }
+                console.error('Erro ao salvar:', e);
+                return false;
+            }
+        }
+        
+        // Atualiza contador de storage
+        function updateStorageInfo() {
+            const info = document.getElementById('storage-info');
+            const count = artworks.length;
+            info.innerHTML = `<strong>${count}</strong> ${count === 1 ? 'arte salva' : 'artes salvas'}`;
+        }
+        
+        // Carrega galeria inicial
+        async function loadInitialGallery() {
+            const hasStorage = loadFromStorage();
+            
+            if (!hasStorage) {
+                try {
+                    const response = await fetch('./galeria_turma7003.json');
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (Array.isArray(data) && data.length > 0) {
+                            artworks = data;
+                            saveToStorage();
+                            console.log('✓ Galeria inicial carregada do JSON');
+                        }
+                    }
+                } catch (e) {
+                    console.log('Nenhuma galeria inicial encontrada');
+                }
+            }
+            
+            renderGallery();
+            updateStorageInfo();
+        }
+        
+        // Renderiza a galeria
+        function renderGallery() {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
+            
+            if (artworks.length === 0) {
+                gallery.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        <h3>Galeria Vazia</h3>
+                        <p>Clique no botão + para adicionar a primeira arte</p>
+                    </div>
+                `;
+                return;
+            }
             
             artworks.forEach((art, index) => {
                 const card = document.createElement('div');
@@ -628,99 +815,81 @@
                 name.className = 'art-card-name';
                 name.textContent = art.student;
                 
-                if (index >= ORIGINAL_COUNT) {
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'delete-btn';
-                    deleteBtn.innerHTML = '×';
-                    deleteBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        deleteImage(index);
-                    };
-                    card.appendChild(deleteBtn);
-                }
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '×';
+                deleteBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    deleteArt(index);
+                };
                 
                 card.appendChild(img);
                 card.appendChild(name);
+                card.appendChild(deleteBtn);
                 gallery.appendChild(card);
             });
         }
         
-        function deleteImage(index) {
-            if (confirm('Tem certeza que deseja remover esta imagem?')) {
+        // Deleta uma arte
+        function deleteArt(index) {
+            if (confirm('Tem certeza que deseja remover "' + artworks[index].student + '"?')) {
                 artworks.splice(index, 1);
-                loadGallery();
-                console.log('Imagem removida');
+                saveToStorage();
+                renderGallery();
+                showToast('✓ Arte removida com sucesso!');
             }
         }
         
-        function exportGallery() {
-            const newArtworks = artworks.slice(ORIGINAL_COUNT);
-            
-            if (newArtworks.length === 0) {
-                alert('Nenhuma imagem para exportar! Adicione imagens primeiro.');
+        // Limpa toda a galeria
+        function clearGallery() {
+            if (artworks.length === 0) {
+                showToast('A galeria já está vazia!');
                 return;
             }
             
-            const dataStr = JSON.stringify(newArtworks, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            if (confirm('⚠️ ATENÇÃO!\n\nIsto vai remover TODAS as ' + artworks.length + ' artes da galeria permanentemente.\n\nTem certeza?')) {
+                artworks = [];
+                saveToStorage();
+                renderGallery();
+                showToast('✓ Galeria limpa com sucesso!');
+            }
+        }
+        
+        // Mostra toast de notificação
+        function showToast(message, type = 'success') {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
             
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(dataBlob);
-            link.download = 'galeria_turma7003.json';
-            link.click();
-            
-            const btn = document.getElementById('save-btn');
-            const originalIcon = btn.textContent;
-            btn.textContent = '✓';
-            btn.classList.add('saved');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
             
             setTimeout(() => {
-                btn.textContent = originalIcon;
-                btn.classList.remove('saved');
-            }, 1500);
-            
-            alert('✓ Arquivo JSON baixado!\n\nColoque o arquivo "galeria_turma7003.json" na mesma pasta do HTML.');
-            console.log('✓ Galeria exportada! Total:', newArtworks.length, 'imagens');
+                toast.classList.add('hide');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
         }
         
-        function importGallery(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const imported = JSON.parse(e.target.result);
-                    
-                    if (!Array.isArray(imported)) {
-                        alert('Arquivo inválido!');
-                        return;
-                    }
-                    
-                    artworks = [...artworks.slice(0, ORIGINAL_COUNT), ...imported];
-                    loadGallery();
-                    alert('✓ Galeria importada!\n' + imported.length + ' imagens carregadas');
-                    console.log('✓ Galeria importada! Total:', imported.length, 'imagens');
-                } catch (e) {
-                    console.error('Erro ao importar:', e);
-                    alert('Erro ao importar: ' + e.message);
-                }
-            };
-            reader.readAsText(file);
-        }
-        
+        // Abre modal de adição
         function openAddModal() {
             document.getElementById('add-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
+        // Fecha modal de adição
         function closeAddModal() {
             document.getElementById('add-modal').classList.remove('active');
             document.getElementById('image-file').value = '';
             document.getElementById('student-name').value = '';
             document.getElementById('preview').classList.remove('show');
             document.getElementById('preview').src = '';
+            document.body.style.overflow = 'auto';
         }
         
+        // Preview da imagem
         function previewImage(event) {
             const file = event.target.files[0];
             if (file) {
@@ -737,12 +906,18 @@
             }
         }
         
-        function addNewImage() {
+        // Adiciona nova imagem
+        function addNewArt() {
             const fileInput = document.getElementById('image-file');
             const name = document.getElementById('student-name').value.trim();
             
-            if (!fileInput.files[0] || !name) {
-                alert('Por favor, selecione uma imagem e digite o nome do aluno!');
+            if (!fileInput.files[0]) {
+                showToast('⚠️ Selecione uma imagem!', 'error');
+                return;
+            }
+            
+            if (!name) {
+                showToast('⚠️ Digite o nome do aluno!', 'error');
                 return;
             }
             
@@ -755,13 +930,27 @@
                     student: name
                 });
                 
-                loadGallery();
-                closeAddModal();
+                if (saveToStorage()) {
+                    renderGallery();
+                    closeAddModal();
+                    showToast('✓ Arte adicionada com sucesso!');
+                    
+                    setTimeout(() => {
+                        const cards = document.querySelectorAll('.art-card');
+                        const lastCard = cards[cards.length - 1];
+                        if (lastCard) {
+                            lastCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }, 100);
+                } else {
+                    artworks.pop();
+                }
             };
             
             reader.readAsDataURL(file);
         }
         
+        // Abre modal de visualização
         function openModal(index) {
             currentIndex = index;
             const modal = document.getElementById('modal');
@@ -771,10 +960,10 @@
             modal.classList.add('active');
             content.classList.add('blurred');
             modalImg.src = artworks[index].file;
-            
             document.body.style.overflow = 'hidden';
         }
         
+        // Fecha modal de visualização
         function closeModal() {
             const modal = document.getElementById('modal');
             const content = document.getElementById('content');
@@ -783,6 +972,7 @@
             document.body.style.overflow = 'auto';
         }
         
+        // Navega entre imagens
         function changeImage(direction) {
             currentIndex += direction;
             
@@ -793,8 +983,8 @@
             }
             
             const modalImg = document.getElementById('modal-img');
-            
             modalImg.style.animation = 'none';
+            
             setTimeout(() => {
                 modalImg.src = artworks[currentIndex].file;
                 modalImg.style.animation = 'slideUp 0.4s ease';
@@ -802,35 +992,41 @@
         }
         
         // Event Listeners
-        document.querySelector('.import-btn').addEventListener('click', () => {
-            document.getElementById('import-input').click();
-        });
-        
-        document.getElementById('import-input').addEventListener('change', importGallery);
-        document.getElementById('save-btn').addEventListener('click', exportGallery);
-        document.querySelector('.add-image-btn').addEventListener('click', openAddModal);
+        document.getElementById('add-btn').addEventListener('click', openAddModal);
+        document.getElementById('clear-btn').addEventListener('click', clearGallery);
         document.getElementById('cancel-btn').addEventListener('click', closeAddModal);
-        document.getElementById('add-btn').addEventListener('click', addNewImage);
+        document.getElementById('submit-btn').addEventListener('click', addNewArt);
         document.getElementById('image-file').addEventListener('change', previewImage);
         document.getElementById('close-modal-btn').addEventListener('click', closeModal);
         document.getElementById('prev-btn').addEventListener('click', () => changeImage(-1));
         document.getElementById('next-btn').addEventListener('click', () => changeImage(1));
         
+        // Fecha modal ao clicar fora
         document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            if (e.target === this) closeModal();
         });
         
+        document.getElementById('add-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeAddModal();
+        });
+        
+        // Atalhos de teclado
         document.addEventListener('keydown', function(e) {
-            if (document.getElementById('modal').classList.contains('active')) {
+            const modal = document.getElementById('modal');
+            if (modal.classList.contains('active')) {
                 if (e.key === 'Escape') closeModal();
                 if (e.key === 'ArrowLeft') changeImage(-1);
                 if (e.key === 'ArrowRight') changeImage(1);
             }
+            
+            const addModal = document.getElementById('add-modal');
+            if (addModal.classList.contains('active') && e.key === 'Escape') {
+                closeAddModal();
+            }
         });
         
-        autoLoadGallery();
+        // Inicializa
+        loadInitialGallery();
     </script>
 </body>
 </html>
