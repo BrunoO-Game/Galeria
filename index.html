@@ -51,6 +51,30 @@
             text-transform: uppercase;
         }
         
+        .nav-links {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .nav-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+        }
+        
         .gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -677,59 +701,15 @@
             <h2>TURMA 7003 · MÓDULO PHOTOSHOP</h2>
         </div>
         
+        <div class="nav-links">
+            <a href="rascunhos.html">📝 Área de Rascunhos (Alunos) →</a>
+        </div>
+        
         <div class="gallery" id="gallery"></div>
     </div>
     
     <div class="storage-info" id="storage-info">
         <strong>0</strong> artes salvas
-    </div>
-    
-    <div class="fab-container">
-        <button class="fab fab-secondary" id="clear-btn" title="Limpar Galeria">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-            </svg>
-            <span class="fab-tooltip">Limpar Tudo</span>
-        </button>
-        <button class="fab fab-primary" id="add-btn" title="Adicionar Imagem">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-            <span class="fab-tooltip">Adicionar Arte</span>
-        </button>
-    </div>
-    
-    <div class="add-modal" id="add-modal">
-        <div class="add-modal-content">
-            <h3>Adicionar Nova Arte</h3>
-            <p class="subtitle">Cole o link da imagem hospedada online</p>
-            
-            <div class="form-group">
-                <label>Link da Imagem (URL):</label>
-                <input type="url" id="image-url" placeholder="https://i.imgur.com/exemplo.jpg">
-                <small>
-                    Hospede gratuitamente em: 
-                    <a href="https://imgur.com/upload" target="_blank">Imgur</a> ou 
-                    <a href="https://imgbb.com/" target="_blank">ImgBB</a>
-                </small>
-            </div>
-            
-            <div class="preview-container" id="preview-container">
-                <img id="preview" class="preview-image" alt="Preview">
-            </div>
-            
-            <div class="form-group">
-                <label>Nome do Aluno:</label>
-                <input type="text" id="student-name" placeholder="Digite o nome completo">
-            </div>
-            
-            <div class="form-actions">
-                <button class="btn btn-secondary" id="cancel-btn">Cancelar</button>
-                <button class="btn btn-primary" id="submit-btn" disabled>Adicionar</button>
-            </div>
-        </div>
     </div>
     
     <div class="modal" id="modal">
@@ -844,21 +824,6 @@
                 saveToStorage();
                 renderGallery();
                 showToast('✓ Arte removida!');
-            }
-        }
-        
-        // Limpa toda a galeria
-        function clearGallery() {
-            if (artworks.length === 0) {
-                showToast('A galeria já está vazia!');
-                return;
-            }
-            
-            if (confirm('⚠️ ATENÇÃO!\n\nIsto vai remover TODAS as ' + artworks.length + ' artes.\n\nTem certeza?')) {
-                artworks = [];
-                saveToStorage();
-                renderGallery();
-                showToast('✓ Galeria limpa!');
             }
         }
         
@@ -1001,12 +966,6 @@
         }
         
         // Event Listeners
-        document.getElementById('add-btn').addEventListener('click', openAddModal);
-        document.getElementById('clear-btn').addEventListener('click', clearGallery);
-        document.getElementById('cancel-btn').addEventListener('click', closeAddModal);
-        document.getElementById('submit-btn').addEventListener('click', addNewArt);
-        document.getElementById('image-url').addEventListener('input', previewImageFromUrl);
-        document.getElementById('image-url').addEventListener('blur', previewImageFromUrl);
         document.getElementById('close-modal-btn').addEventListener('click', closeModal);
         document.getElementById('prev-btn').addEventListener('click', () => changeImage(-1));
         document.getElementById('next-btn').addEventListener('click', () => changeImage(1));
@@ -1016,10 +975,6 @@
             if (e.target === this) closeModal();
         });
         
-        document.getElementById('add-modal').addEventListener('click', function(e) {
-            if (e.target === this) closeAddModal();
-        });
-        
         // Atalhos de teclado
         document.addEventListener('keydown', function(e) {
             const modal = document.getElementById('modal');
@@ -1027,11 +982,6 @@
                 if (e.key === 'Escape') closeModal();
                 if (e.key === 'ArrowLeft') changeImage(-1);
                 if (e.key === 'ArrowRight') changeImage(1);
-            }
-            
-            const addModal = document.getElementById('add-modal');
-            if (addModal.classList.contains('active') && e.key === 'Escape') {
-                closeAddModal();
             }
         });
         
