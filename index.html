@@ -64,12 +64,12 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
-        .menu-link.rascunhos {
-            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+        .menu-link.add {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         }
         
-        .menu-link.rascunhos:hover {
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        .menu-link.add:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
         }
         
         .main-content {
@@ -107,29 +107,20 @@
             text-transform: uppercase;
         }
         
-        .nav-links {
+        .status-bar {
             text-align: center;
             margin-bottom: 30px;
-            display: none;
-        }
-        
-        .nav-links a {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .nav-links a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+        .status-bar.loading {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
         }
         
         .gallery {
@@ -145,36 +136,6 @@
             overflow: hidden;
             cursor: pointer;
             aspect-ratio: 1;
-        }
-        
-        .delete-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 35px;
-            height: 35px;
-            background: rgba(220, 38, 38, 0.9);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.3rem;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 300;
-        }
-        
-        .art-card:hover .delete-btn {
-            opacity: 1;
-        }
-        
-        .delete-btn:hover {
-            background: rgba(185, 28, 28, 1);
-            transform: scale(1.15);
         }
         
         .art-card:nth-child(2) {
@@ -353,82 +314,6 @@
             transform: translateY(-50%) scale(1.1);
         }
         
-        .fab-container {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 100;
-        }
-        
-        .fab {
-            width: 60px;
-            height: 60px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            position: relative;
-        }
-        
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .fab-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-        }
-        
-        .fab-secondary {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: #fff;
-        }
-        
-        .fab-tooltip {
-            position: absolute;
-            right: 75px;
-            background: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .fab:hover .fab-tooltip {
-            opacity: 1;
-        }
-        
-        .storage-info {
-            position: fixed;
-            bottom: 40px;
-            left: 40px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-        
-        .storage-info strong {
-            color: #667eea;
-        }
-        
         .add-modal {
             display: none;
             position: fixed;
@@ -459,7 +344,7 @@
         .add-modal-content h3 {
             font-family: 'Anton', sans-serif;
             font-size: 1.8rem;
-            color: #000;
+            color: #10b981;
             margin-bottom: 10px;
             text-transform: uppercase;
             text-align: center;
@@ -497,7 +382,7 @@
         
         .form-group input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #10b981;
         }
         
         .form-group small {
@@ -508,7 +393,7 @@
         }
         
         .form-group small a {
-            color: #667eea;
+            color: #10b981;
             text-decoration: none;
             font-weight: 600;
         }
@@ -553,13 +438,13 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: #fff;
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
         
         .btn-primary:disabled {
@@ -603,9 +488,9 @@
         
         .toast {
             position: fixed;
-            bottom: 120px;
+            bottom: 40px;
             right: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: #fff;
             padding: 16px 24px;
             border-radius: 12px;
@@ -684,7 +569,7 @@
         }
         
         @media (max-width: 768px) {
-            body {
+            .main-content {
                 padding: 40px 20px;
             }
             
@@ -716,58 +601,6 @@
             .menu-link {
                 text-align: center;
             }
-            
-            .main-content {
-                padding: 40px 20px;
-            }
-            
-            .close-btn {
-                top: 20px;
-                right: 20px;
-            }
-            
-            .nav-btn {
-                font-size: 2rem;
-                padding: 15px 20px;
-            }
-            
-            .prev-btn {
-                left: 15px;
-            }
-            
-            .next-btn {
-                right: 15px;
-            }
-            
-            .fab-container {
-                bottom: 20px;
-                right: 20px;
-                gap: 12px;
-            }
-            
-            .fab {
-                width: 56px;
-                height: 56px;
-                font-size: 1.6rem;
-            }
-            
-            .fab-tooltip {
-                display: none;
-            }
-            
-            .storage-info {
-                bottom: 20px;
-                left: 20px;
-                font-size: 0.75rem;
-                padding: 10px 16px;
-            }
-            
-            .toast {
-                bottom: 100px;
-                right: 20px;
-                left: 20px;
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
@@ -775,8 +608,8 @@
     <nav class="menu">
         <div class="menu-logo">GALERIA TURMA 7003</div>
         <div class="menu-nav">
-            <a href="index.html" class="menu-link active">🎨 Galeria Principal</a>
-            <a href="rascunhos.html" class="menu-link rascunhos">📝 Rascunhos</a>
+            <a href="#" class="menu-link active">🎨 Galeria</a>
+            <a href="#" class="menu-link add" onclick="openAddModal(); return false;">+ Adicionar Arte</a>
         </div>
     </nav>
     
@@ -787,72 +620,104 @@
                 <h2>TURMA 7003 · MÓDULO PHOTOSHOP</h2>
             </div>
             
+            <div class="status-bar loading" id="status-bar">
+                ⏳ Carregando galeria...
+            </div>
+            
             <div class="gallery" id="gallery"></div>
         </div>
     </div>
     
-    <div class="storage-info" id="storage-info">
-        <strong>0</strong> artes salvas
+    <div class="add-modal" id="add-modal">
+        <div class="add-modal-content">
+            <h3>Adicionar Arte</h3>
+            <p class="subtitle">Todos verão sua arte em tempo real!</p>
+            
+            <div class="form-group">
+                <label>Link da Imagem (URL):</label>
+                <input type="url" id="image-url" placeholder="https://i.imgur.com/exemplo.jpg">
+                <small>
+                    Hospede em: 
+                    <a href="https://imgur.com/upload" target="_blank">Imgur</a> ou 
+                    <a href="https://imgbb.com/" target="_blank">ImgBB</a>
+                </small>
+            </div>
+            
+            <div class="preview-container" id="preview-container">
+                <img id="preview" class="preview-image" alt="Preview">
+            </div>
+            
+            <div class="form-group">
+                <label>Seu Nome:</label>
+                <input type="text" id="student-name" placeholder="Digite seu nome completo">
+            </div>
+            
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="closeAddModal()">Cancelar</button>
+                <button class="btn btn-primary" id="submit-btn" onclick="addNewArt()" disabled>Adicionar</button>
+            </div>
+        </div>
     </div>
     
     <div class="modal" id="modal">
-        <div class="close-btn" id="close-modal-btn"></div>
-        <button class="nav-btn prev-btn" id="prev-btn">‹</button>
+        <div class="close-btn" onclick="closeModal()"></div>
+        <button class="nav-btn prev-btn" onclick="changeImage(-1)">‹</button>
         <div class="modal-content">
             <img id="modal-img" src="" alt="">
         </div>
-        <button class="nav-btn next-btn" id="next-btn">›</button>
+        <button class="nav-btn next-btn" onclick="changeImage(1)">›</button>
     </div>
     
-    <script>
-        const STORAGE_KEY = 'galeria_turma7003_artworks';
+    <!-- Firebase -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        
+        // 🔥 COLE SUAS CREDENCIAIS DO FIREBASE AQUI:
+        const firebaseConfig = {
+            apiKey: "COLE_AQUI",
+            authDomain: "COLE_AQUI",
+            projectId: "COLE_AQUI",
+            storageBucket: "COLE_AQUI",
+            messagingSenderId: "COLE_AQUI",
+            appId: "COLE_AQUI"
+        };
+        
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
         let artworks = [];
         let currentIndex = 0;
         
-        // Carrega artworks do localStorage
-        function loadFromStorage() {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    artworks = JSON.parse(saved);
-                    console.log('✓ Galeria carregada:', artworks.length, 'imagens');
-                    return true;
-                }
-            } catch (e) {
-                console.error('Erro ao carregar:', e);
-            }
-            return false;
+        // Carrega galeria em tempo real
+        function loadGallery() {
+            const q = query(collection(db, 'artworks'), orderBy('createdAt', 'desc'));
+            
+            onSnapshot(q, (snapshot) => {
+                artworks = [];
+                snapshot.forEach((doc) => {
+                    artworks.push({ id: doc.id, ...doc.data() });
+                });
+                
+                renderGallery();
+                updateStatus();
+            });
         }
         
-        // Salva artworks no localStorage
-        function saveToStorage() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(artworks));
-                updateStorageInfo();
-                console.log('✓ Galeria salva');
-                return true;
-            } catch (e) {
-                showToast('⚠️ Erro ao salvar!', 'error');
-                console.error('Erro:', e);
-                return false;
-            }
-        }
-        
-        // Atualiza contador
-        function updateStorageInfo() {
-            const info = document.getElementById('storage-info');
+        function updateStatus() {
+            const statusBar = document.getElementById('status-bar');
             const count = artworks.length;
-            info.innerHTML = `<strong>${count}</strong> ${count === 1 ? 'arte salva' : 'artes salvas'}`;
+            
+            if (count === 0) {
+                statusBar.className = 'status-bar loading';
+                statusBar.textContent = '📭 Galeria vazia - Adicione a primeira arte!';
+            } else {
+                statusBar.className = 'status-bar';
+                statusBar.innerHTML = `✅ <strong>${count}</strong> ${count === 1 ? 'arte' : 'artes'} · Atualização em tempo real`;
+            }
         }
         
-        // Carrega galeria inicial
-        function loadInitialGallery() {
-            loadFromStorage();
-            renderGallery();
-            updateStorageInfo();
-        }
-        
-        // Renderiza a galeria
         function renderGallery() {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
@@ -866,7 +731,7 @@
                             <polyline points="21 15 16 10 5 21"></polyline>
                         </svg>
                         <h3>Galeria Vazia</h3>
-                        <p>Vá para a <a href="rascunhos.html" style="color: #667eea; font-weight: 600;">Área de Rascunhos</a> e aprove as artes dos alunos!</p>
+                        <p>Clique em "+ Adicionar Arte" para começar!</p>
                     </div>
                 `;
                 return;
@@ -879,136 +744,45 @@
                 const img = document.createElement('img');
                 img.alt = 'Arte de ' + art.student;
                 img.src = art.file;
-                img.onclick = () => openModal(index);
+                img.onclick = () => window.openModal(index);
                 
                 const name = document.createElement('div');
                 name.className = 'art-card-name';
                 name.textContent = art.student;
                 
-                const deleteBtn = document.createElement('button');
-                deleteBtn.className = 'delete-btn';
-                deleteBtn.innerHTML = '×';
-                deleteBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    deleteArt(index);
-                };
-                
                 card.appendChild(img);
                 card.appendChild(name);
-                card.appendChild(deleteBtn);
                 gallery.appendChild(card);
             });
         }
         
-        // Deleta uma arte
-        function deleteArt(index) {
-            if (confirm('Tem certeza que deseja remover "' + artworks[index].student + '"?')) {
-                artworks.splice(index, 1);
-                saveToStorage();
-                renderGallery();
-                showToast('✓ Arte removida!');
-            }
-        }
-        
-        // Mostra toast
-        function showToast(message) {
-            const existingToast = document.querySelector('.toast');
-            if (existingToast) existingToast.remove();
-            
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.add('hide');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-        
-        // Abre modal de adição
-        function openAddModal() {
-            document.getElementById('add-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // Fecha modal de adição
-        function closeAddModal() {
-            document.getElementById('add-modal').classList.remove('active');
-            document.getElementById('image-url').value = '';
-            document.getElementById('student-name').value = '';
-            document.getElementById('preview-container').classList.remove('show');
-            document.getElementById('submit-btn').disabled = true;
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Preview da imagem a partir da URL
-        function previewImageFromUrl() {
-            const url = document.getElementById('image-url').value.trim();
-            const submitBtn = document.getElementById('submit-btn');
-            const previewContainer = document.getElementById('preview-container');
-            const preview = document.getElementById('preview');
-            
-            if (!url) {
-                previewContainer.classList.remove('show');
-                submitBtn.disabled = true;
-                return;
-            }
-            
-            // Testa se a URL é válida e carrega a imagem
-            const img = new Image();
-            img.onload = function() {
-                preview.src = url;
-                previewContainer.classList.add('show');
-                submitBtn.disabled = false;
-            };
-            img.onerror = function() {
-                previewContainer.classList.remove('show');
-                submitBtn.disabled = true;
-                showToast('⚠️ URL inválida ou imagem não acessível');
-            };
-            img.src = url;
-        }
-        
         // Adiciona nova arte
-        function addNewArt() {
+        window.addNewArt = async function() {
             const url = document.getElementById('image-url').value.trim();
             const name = document.getElementById('student-name').value.trim();
             
-            if (!url) {
-                showToast('⚠️ Cole o link da imagem!');
+            if (!url || !name) {
+                alert('⚠️ Preencha todos os campos!');
                 return;
             }
             
-            if (!name) {
-                showToast('⚠️ Digite o nome do aluno!');
-                return;
-            }
-            
-            artworks.push({
-                file: url,
-                student: name
-            });
-            
-            if (saveToStorage()) {
-                renderGallery();
-                closeAddModal();
-                showToast('✓ Arte adicionada!');
+            try {
+                await addDoc(collection(db, 'artworks'), {
+                    file: url,
+                    student: name,
+                    createdAt: new Date()
+                });
                 
-                setTimeout(() => {
-                    const cards = document.querySelectorAll('.art-card');
-                    const lastCard = cards[cards.length - 1];
-                    if (lastCard) {
-                        lastCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }, 100);
-            } else {
-                artworks.pop();
+                window.closeAddModal();
+                window.showToast('✅ Arte adicionada! Todos já podem ver!');
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('❌ Erro ao adicionar: ' + error.message);
             }
-        }
+        };
         
-        // Abre modal de visualização
-        function openModal(index) {
+        // Funções globais
+        window.openModal = function(index) {
             currentIndex = index;
             const modal = document.getElementById('modal');
             const modalImg = document.getElementById('modal-img');
@@ -1018,19 +792,17 @@
             content.classList.add('blurred');
             modalImg.src = artworks[index].file;
             document.body.style.overflow = 'hidden';
-        }
+        };
         
-        // Fecha modal de visualização
-        function closeModal() {
+        window.closeModal = function() {
             const modal = document.getElementById('modal');
             const content = document.getElementById('content');
             modal.classList.remove('active');
             content.classList.remove('blurred');
             document.body.style.overflow = 'auto';
-        }
+        };
         
-        // Navega entre imagens
-        function changeImage(direction) {
+        window.changeImage = function(direction) {
             currentIndex += direction;
             
             if (currentIndex < 0) {
@@ -1046,30 +818,62 @@
                 modalImg.src = artworks[currentIndex].file;
                 modalImg.style.animation = 'slideUp 0.4s ease';
             }, 50);
-        }
+        };
         
-        // Event Listeners
-        document.getElementById('close-modal-btn').addEventListener('click', closeModal);
-        document.getElementById('prev-btn').addEventListener('click', () => changeImage(-1));
-        document.getElementById('next-btn').addEventListener('click', () => changeImage(1));
+        window.openAddModal = function() {
+            document.getElementById('add-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
         
-        // Fecha modal ao clicar fora
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
+        window.closeAddModal = function() {
+            document.getElementById('add-modal').classList.remove('active');
+            document.getElementById('image-url').value = '';
+            document.getElementById('student-name').value = '';
+            document.getElementById('preview-container').classList.remove('show');
+            document.getElementById('submit-btn').disabled = true;
+            document.body.style.overflow = 'auto';
+        };
         
-        // Atalhos de teclado
-        document.addEventListener('keydown', function(e) {
-            const modal = document.getElementById('modal');
-            if (modal.classList.contains('active')) {
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowLeft') changeImage(-1);
-                if (e.key === 'ArrowRight') changeImage(1);
+        window.showToast = function(message) {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) existingToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('hide');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        };
+        
+        // Preview da imagem
+        document.getElementById('image-url').addEventListener('input', function() {
+            const url = this.value.trim();
+            const submitBtn = document.getElementById('submit-btn');
+            const previewContainer = document.getElementById('preview-container');
+            const preview = document.getElementById('preview');
+            
+            if (!url) {
+                previewContainer.classList.remove('show');
+                submitBtn.disabled = true;
+                return;
             }
+            
+            const img = new Image();
+            img.onload = function() {
+                preview.src = url;
+                previewContainer.classList.add('show');
+                submitBtn.disabled = false;
+            };
+            img.onerror = function() {
+                previewContainer.classList.remove('show');
+                submitBtn.disabled = true;
+            };
+            img.src = url;
         });
         
-        // Inicializa
-        loadInitialGallery();
-    </script>
-</body>
-</html>
+        // Event listeners
+        document.getElementById('modal').addEventListener('click
