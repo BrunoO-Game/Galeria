@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Arte - Turma 7003</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: #fff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        h2 {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .instructions {
+            background: #f3f4f6;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .step::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .step strong {
+            color: #667eea;
+        }
+        
+        .step a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .step a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 18px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+        
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .warning strong {
+            color: #f59e0b;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ENVIAR ARTE</h1>
+        <h2>TURMA 7003 · MÓDULO PHOTOSHOP</h2>
+        
+        <div class="instructions">
+            <h3>📋 Como Enviar sua Arte:</h3>
+            
+            <div class="step">
+                <strong>1. Hospede sua imagem:</strong><br>
+                Faça upload no <a href="https://imgur.com/upload" target="_blank">Imgur</a> ou <a href="https://imgbb.com/" target="_blank">ImgBB</a>
+            </div>
+            
+            <div class="step">
+                <strong>2. Copie o link direto:</strong><br>
+                Clique com botão direito na imagem → "Copiar endereço da imagem"<br>
+                <small style="color: #666;">O link deve terminar em .jpg ou .png</small>
+            </div>
+            
+            <div class="step">
+                <strong>3. Preencha o formulário:</strong><br>
+                Cole o link da imagem + seu nome completo
+            </div>
+            
+            <div class="step">
+                <strong>4. Envie!</strong><br>
+                Sua arte será revisada e aprovada para a galeria
+            </div>
+        </div>
+        
+        <div class="warning">
+            <strong>⚠️ Importante:</strong> Certifique-se de que o link da imagem está correto e acessível antes de enviar!
+        </div>
+        
+        <div class="btn-container">
+            <a href="index.html" class="btn btn-secondary">← Voltar</a>
+            <a href="#" class="btn btn-primary" id="form-btn">📤 Enviar Minha Arte</a>
+        </div>
+    </div>
+    
+    <script>
+        // COLE AQUI O LINK DO SEU GOOGLE FORMS
+        const GOOGLE_FORM_URL = 'https://forms.gle/SEU_LINK_AQUI';
+        
+        document.getElementById('form-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (GOOGLE_FORM_URL.includes('SEU_LINK_AQUI')) {
+                alert('⚠️ Configure o link do Google Forms primeiro!\n\nEdite o arquivo enviar.html e cole o link do seu formulário na linha 175.');
+                return;
+            }
+            
+            window.open(GOOGLE_FORM_URL, '_blank');
+        });
+    </script>
+</body>
+</html>
